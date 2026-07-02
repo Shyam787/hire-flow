@@ -12,3 +12,12 @@ Planning Phase
 ⬜ API Contracts
 ⬜ Folder Structure Lock
 ⬜ Project Initialization
+
+
+Execution phase
+✅ Project initialization
+✅ Dependencies installed
+✅ Prisma initialized
+✅ shadcn/ui initialized
+✅ Folder structure created
+🟡 Database implementation
