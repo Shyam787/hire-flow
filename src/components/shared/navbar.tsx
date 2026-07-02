@@ -43,11 +43,11 @@ export function Navbar() {
             </Button>
 
             <Button variant="outline" asChild>
-              <Link href="/register">Register</Link>
+              <Link href="/signup">Sign up</Link>
             </Button>
 
             <Button asChild>
-              <Link href="/register">
+              <Link href="/signup">
                 Post a Job
               </Link>
             </Button>
