@@ -11,15 +11,63 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+enum Role {
+  CANDIDATE
+  EMPLOYER
+}
+
+enum JobStatus {
+  DRAFT
+  PUBLISHED
+  CLOSED
+}
+
+enum ApplicationStatus {
+  PENDING
+  REVIEWING
+  SHORTLISTED
+  REJECTED
+  HIRED
+  WITHDRAWN
+}
+
 model User {
-  id        String   @id @default(cuid())
+  id        String   @id
   name      String?
+  firstName String?
+  lastName  String?
   email     String   @unique
   image     String?
+  role      Role     @default(CANDIDATE)
+  headline  String?
+  location  String?
+  bio       String?
+  phone     String?
+  currentJobTitle String?
+  yearsExperience Int?
+  preferredJobRole String?
+  preferredWorkType String?
+  preferredEmploymentType String?
+  expectedSalary String?
+  lookingForJob Boolean @default(true)
+  skills String[] @default([])
+  college String?
+  degree String?
+  fieldOfStudy String?
+  graduationYear String?
+  resumeUrl String?
+  linkedinUrl String?
+  githubUrl String?
+  portfolioUrl String?
+  designation String?
+  profileAvatar String? @default("avatar-1")
+  applicationUpdates Boolean @default(true)
+  newJobAlerts Boolean @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   applications Application[]
+  companies    Company[]
 }
 
 model Company {
@@ -27,7 +75,22 @@ model Company {
   name      String
   logo      String?
   industry  String?
+  size      String?
+  description String?
+  location  String?
+  website   String?
+  country   String?
+  state     String?
+  city      String?
+  address   String?
+  email     String?
+  phone     String?
+  linkedinUrl String?
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  ownerId String?
+  owner   User?   @relation(fields: [ownerId], references: [id], onDelete: SetNull)
 
   jobs Job[]
 }
@@ -38,9 +101,12 @@ model Job {
   description     String
   location        String
   employmentType  String
+  experienceLevel String   @default("Mid-level")
   salary          String?
   skills          String[]
+  status          JobStatus @default(PUBLISHED)
   postedAt        DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 
   companyId String
   company   Company @relation(fields: [companyId], references: [id])
@@ -50,12 +116,18 @@ model Job {
 
 model Application {
   id        String   @id @default(cuid())
-  status    String   @default("pending")
+  status    ApplicationStatus @default(PENDING)
+  coverLetter String?
+  resumeUrl String?
+  withdrawnAt DateTime?
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   userId String
   jobId  String
 
   user User @relation(fields: [userId], references: [id])
-  job  Job  @relation(fields: [jobId], references: [id])
+  job  Job  @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, jobId])
 }

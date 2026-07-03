@@ -11,17 +11,18 @@ const footerSections = [
     ],
   },
   {
-    title: "Company",
+    title: "Account",
     links: [
-      { label: "About", href: "/about" },
-      { label: "Contact", href: "/contact" },
+      { label: "Dashboard", href: "/dashboard" },
+      { label: "Profile", href: "/dashboard/profile" },
+      { label: "Sign up", href: "/signup" },
     ],
   },
   {
-    title: "Resources",
+    title: "Hiring",
     links: [
-      { label: "Help", href: "/help" },
-      { label: "FAQ", href: "/faq" },
+      { label: "Login", href: "/login" },
+      { label: "Post a job", href: "/dashboard/employer/jobs/new" },
     ],
   },
 ];
@@ -37,7 +38,7 @@ export function Footer() {
             </Link>
 
             <p className="mt-4 text-sm text-muted-foreground">
-              Connecting Talent with Opportunity.
+              Connecting talent with opportunity.
             </p>
           </div>
 
@@ -64,7 +65,7 @@ export function Footer() {
         </div>
 
         <div className="border-t py-6 text-center text-sm text-muted-foreground">
-          © 2026 HireFlow. All rights reserved.
+          Copyright 2026 HireFlow. All rights reserved.
         </div>
       </PageContainer>
     </footer>

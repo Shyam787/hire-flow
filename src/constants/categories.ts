@@ -6,11 +6,12 @@ import {
   Briefcase,
   Shield,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 export interface Category {
   id: string;
   name: string;
-  icon: any;
+  icon: LucideIcon;
   jobCount: number;
 }
 

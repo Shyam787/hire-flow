@@ -1,23 +1,18 @@
 export interface CompanySummary {
   id: string;
   name: string;
-  logo?: string;
+  logo: string | null;
 }
-
-export type EmploymentType =
-  | "Full-time"
-  | "Part-time"
-  | "Contract"
-  | "Internship"
-  | "Freelance";
 
 export interface Job {
   id: string;
   title: string;
+  description: string;
   company: CompanySummary;
   location: string;
-  employmentType: EmploymentType;
-  salary?: string;
+  employmentType: string;
+  experienceLevel: string;
+  salary: string | null;
   skills: string[];
   postedAt: string;
 }

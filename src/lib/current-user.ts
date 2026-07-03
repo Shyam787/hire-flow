@@ -1,5 +1,5 @@
+import { prisma } from "@/lib/prisma";
 import { createSupabaseServerClient } from "@/lib/supabase-server";
-import { upsertUser } from "@/lib/user";
 
 export async function getCurrentUser() {
   const supabase = await createSupabaseServerClient();
@@ -8,9 +8,13 @@ export async function getCurrentUser() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user) return null;
+  if (!user) {
+    return null;
+  }
 
-  const dbUser = await upsertUser(user);
-
-  return dbUser;
+  return prisma.user.findUnique({
+    where: {
+      id: user.id,
+    },
+  });
 }

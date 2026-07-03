@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowRight, Briefcase, Clock3, MapPin } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -10,9 +11,7 @@ interface JobCardProps {
 
 export function JobCard({ job }: JobCardProps) {
   return (
-    <article
-      className={CARD_STYLES + " flex h-full flex-col"}
-    >
+    <article className={CARD_STYLES + " flex h-full flex-col"}>
       {/* Company */}
       <div className="flex items-center gap-4">
         <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-lg font-bold text-primary">
@@ -41,6 +40,8 @@ export function JobCard({ job }: JobCardProps) {
           <span>{job.location}</span>
         </div>
 
+        <p>{job.experienceLevel}</p>
+
         {job.salary && (
           <p className="font-medium text-foreground">{job.salary}</p>
         )}
@@ -48,17 +49,19 @@ export function JobCard({ job }: JobCardProps) {
 
       {/* Skills */}
       <div className="mt-6 flex flex-wrap gap-2">
-        {job.skills.map((skill) => (
+        {job.skills.slice(0, 4).map((skill) => (
           <span
             key={skill}
-            className="
-              rounded-full border bg-muted px-3 py-1
-              text-xs font-medium text-muted-foreground
-            "
+            className="rounded-full border bg-muted px-3 py-1 text-xs font-medium text-muted-foreground"
           >
             {skill}
           </span>
         ))}
+        {job.skills.length > 4 && (
+          <span className="rounded-full border bg-background px-3 py-1 text-xs font-medium text-muted-foreground">
+            +{job.skills.length - 4} more
+          </span>
+        )}
       </div>
 
       {/* Footer */}
@@ -68,9 +71,11 @@ export function JobCard({ job }: JobCardProps) {
           <span>{job.postedAt}</span>
         </div>
 
-        <Button size="sm">
-          Apply
-          <ArrowRight className={ICON_SIZE_SM} />
+        <Button size="sm" asChild>
+          <Link href={`/jobs/${job.id}`}>
+            Apply
+            <ArrowRight className={ICON_SIZE_SM} />
+          </Link>
         </Button>
       </div>
     </article>

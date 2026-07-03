@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { PageContainer } from "@/components/shared/page-container";
@@ -31,13 +32,17 @@ export function CTA() {
             </p>
 
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Button size="lg">
-                Get Started
-                <ArrowRight className={ICON_SIZE_SM} />
+              <Button size="lg" asChild>
+                <Link href="/login">
+                  Get Started
+                  <ArrowRight className={ICON_SIZE_SM} />
+                </Link>
               </Button>
 
-              <Button size="lg" variant="outline">
-                Browse Jobs
+              <Button size="lg" variant="outline" asChild>
+                <Link href="/jobs">
+                  Browse Jobs
+                </Link>
               </Button>
             </div>
           </div>

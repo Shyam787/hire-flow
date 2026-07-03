@@ -1,10 +1,11 @@
 import { Search, FileText, Rocket } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 export interface HowItWorksStep {
   id: string;
   title: string;
   description: string;
-  icon: any;
+  icon: LucideIcon;
 }
 
 export const howItWorks: HowItWorksStep[] = [
