@@ -15,6 +15,11 @@ The project goes beyond a static job board. It includes authenticated role-based
 - Prisma migrations and seed data for repeatable setup
 - CI-ready scripts for type checking, linting, and production builds
 
+## Assessment Links
+
+- Live Demo: https://hire-flow-kappa-lovat.vercel.app
+- AI-Generated Documentation: [docs/AI_GENERATED_DOCUMENTATION.md](docs/AI_GENERATED_DOCUMENTATION.md)
+
 ## Product Features
 
 ### Candidate Experience
